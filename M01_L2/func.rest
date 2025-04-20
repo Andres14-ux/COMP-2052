@@ -10,5 +10,5 @@ GET http://127.0.0.1:5000/info
 POST http://127.0.0.1:5000/mensaje
 Content-Type: application/json
 {
-  "mensaje": "Hola desde Visual Studio Code!"
+  "mensaje": "Hola desde la computadora"
 }
