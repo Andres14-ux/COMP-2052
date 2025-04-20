@@ -2,21 +2,23 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-#GET
-@app.route('/info', methods=['GET'])
+# Ruta GET
+@app.route("/info", methods=["GET"])
 def info():
     return jsonify({
-        'nombre': 'Capstone Project API',
-        'version': '1.0',
-        'descripcion': 'API básica con Flask'
+        "nombre": "Proyecto Capstone",
+        "versión": "1.0",
+        "autor": "Andrés  M Tosado"
     })
 
-#POST
-@app.route('/mensaje', methods=['POST'])
+# Ruta POST
+@app.route("/mensaje", methods=["POST"])
 def mensaje():
     datos = request.get_json()
-    nombre = datos.get('nombre', 'invitado')
-    return jsonify({'respuesta': f'Hola, {nombre}. ¡Tu mensaje fue recibido con éxito!'})
+    texto = datos.get("mensaje", "Sin mensaje recibido")
+    return jsonify({
+        "respuesta": f"Recibí tu mensaje: {texto}"
+    })
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
