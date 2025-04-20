@@ -5,7 +5,7 @@ app = Flask(__name__)
 todos = {
     "todos": ['Estudiar', 'Comer', 'Jugar UNO']
     }
-
+#ruta
 @app.route("/", methods=["GET"])
 def home():
     return "Simple TODO API"
