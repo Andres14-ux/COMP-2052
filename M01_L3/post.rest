@@ -1,0 +1,8 @@
+# POST
+POST http://127.0.0.1:5000/usuarios
+Content-Type: application/json
+
+{
+  "nombre": "Laura",
+  "correo": "laura@example.com"
+}
