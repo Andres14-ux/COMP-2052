@@ -1,17 +1,14 @@
-<<<<<<< HEAD
+
 #Obtener información
 GET http://127.0.0.1:5000/info
 
-#Enviar mensaje
-=======
+
 # Obtener información
 GET http://127.0.0.1:5000/info
 
 # Enviar mensaje
->>>>>>> fe0cc3c9a3b99e6f6290de7e251d4d23ef661c86
 POST http://127.0.0.1:5000/mensaje
 Content-Type: application/json
-
 {
   "mensaje": "Hola desde Visual Studio Code!"
 }
