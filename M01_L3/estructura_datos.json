@@ -1,0 +1,29 @@
+{
+    "usuarios": [
+      {
+        "id": 1,
+        "nombre": "Juan Pérez",
+        "correo": "juanperez@example.com"
+      },
+      {
+        "id": 2,
+        "nombre": "María López",
+        "correo": "marialopez@example.com"
+      }
+    ],
+    "productos": [
+      {
+        "id": 101,
+        "nombre": "Mouse Inalámbrico",
+        "precio": 25.99,
+        "stock": 50
+      },
+      {
+        "id": 102,
+        "nombre": "Teclado Mecánico",
+        "precio": 79.95,
+        "stock": 30
+      }
+    ]
+  }
+  
