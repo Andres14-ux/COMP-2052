@@ -1,0 +1,6 @@
+{
+    "username": "nombre_de_usuario",
+    "password": "hash_contraseña",
+    "role": "user"
+  }
+  
