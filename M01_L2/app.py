@@ -2,23 +2,27 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Ruta GET
-@app.route("/info", methods=["GET"])
+#Get
+@app.route('/info', methods=['GET'])
 def info():
     return jsonify({
-        "nombre": "Proyecto Capstone",
-        "versión": "1.0",
-        "autor": "Andrés  M Tosado"
+        "nombre_aplicacion": "Capstone Flask API",
+        "version": "1.0",
+        "descripcion": "Esta aplicacion demuestra una arquitectura Cliente/Servidor con Flask y se demostrara esta informacion."
     })
 
-# Ruta POST
-@app.route("/mensaje", methods=["POST"])
+#Post
+@app.route('/mensaje', methods=['GET','POST'])
 def mensaje():
-    datos = request.get_json()
-    texto = datos.get("mensaje", "Sin mensaje recibido")
-    return jsonify({
-        "respuesta": f"Recibí tu mensaje: {texto}"
-    })
+    if request.method == 'POST':
+        datos = request.get_json()
+        mensaje = datos.get("mensaje")
+        if not mensaje:
+            return jsonify({"error": "El campo 'mensaje' es requerido."}), 400
+        return jsonify({"respuesta": f"Mensaje recibido: {mensaje}"}), 200
+    else:
+        return jsonify({"info": "En esta ruta se vera el POST."})
+  
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
