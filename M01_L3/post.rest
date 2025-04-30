@@ -1,8 +1,8 @@
-# Crear usuario
+#Crear usuario
 POST http://127.0.0.1:5000/crear_usuario
 Content-Type: application/json
 
 {
-  "nombre": "Juan Pérez",
-  "correo": "juanperez@example.com"
+  "nombre": "david",
+  "correo": "david@email.com"
 }

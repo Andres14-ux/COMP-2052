@@ -2,47 +2,46 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# Guardar usuarios
-usuarios = []
+#Lista en memoria para almacenar usuarios
+usuarios = ['Jose', 'Maria', 'Pedro']
 
-# Ruta GET /info
-@app.route("/info", methods=["GET"])
+#Get info
+@app.route('/info', methods=['GET'])
 def info():
     return jsonify({
-        "sistema": "Gestión de Usuarios y Productos",
-        "versión": "1.0",
-        "autor": "Andres  M Tosado"
+        "sistema": "Gestion de usuarios",
+        "version": "1.0",
+        "descripcion": "Esta app es para registrar y listar usuarios usando Flask."
     })
 
-# Ruta POST /crear_usuario
-@app.route("/crear_usuario", methods=["POST"])
+#Post usuario
+@app.route('/crear_usuario', methods=['POST'])
 def crear_usuario():
     datos = request.get_json()
 
-    # Validación de datos
-    nombre = datos.get("nombre")
-    correo = datos.get("correo")
+    nombre = datos.get('nombre')
+    correo = datos.get('correo')
 
     if not nombre or not correo:
-        return jsonify({"error": "El nombre y el correo son requeridos."}), 400
+        return jsonify({
+            "error": "Faltan datos. Se requiere 'nombre' y 'correo'."
+        }), 400
 
-    # Agregar usuario a la lista
-    usuario = {"nombre": nombre, "correo": correo}
-    usuarios.append(usuario)
+    nuevo_usuario = {"nombre": nombre, "correo": correo}
+    usuarios.append(nuevo_usuario)
 
     return jsonify({
-        "mensaje": "Usuario creado exitosamente.",
-        "usuario": usuario
+        "mensaje": "Usuario creado con exito.",
+        "usuario": nuevo_usuario
     }), 201
 
-# Ruta GET /usuarios
-@app.route("/usuarios", methods=["GET"])
-def obtener_usuarios():
+#Get usuarios
+@app.route('/usuarios', methods=['GET'])
+def listar_usuarios():
     return jsonify({
-        "cantidad": len(usuarios),
+        "mensaje": "Lista de usuarios",
         "usuarios": usuarios
     })
 
-# Ejecutar servidor
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
