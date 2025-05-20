@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  {{ editar and "Edit Ticket" or "New Ticket" }}
+{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{{ editar and "Edit Ticket" or "New Ticket" }}</h2>
+
+<form method="POST" action="{{ url_for('main.tickets') if not editar else url_for('main.editar_ticket', id=ticket.id) }}" novalidate>
+  {{ form.hidden_tag() }}
+
+  <!-- Mostrar errores generales del formulario -->
+  {% if form.errors %}
+    <div class="alert alert-danger mb-4">
+      <strong>Error!</strong> Por favor corrige los siguientes errores:
+      <ul class="mb-0">
+        {% for field, errors in form.errors.items() %}
+          {% for error in errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <!-- Ticket Asunto -->
+  <div class="mb-3">
+    {{ form.asunto.label(class="form-label") }}
+    {{ form.asunto(class="form-control" + (' is-invalid' if form.asunto.errors else ''), placeholder="Enter ticket subject") }}
+    {% for error in form.asunto.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}
+  </div>
+
+  <!-- Ticket Description -->
+  <div class="mb-3">
+    {{ form.descripcion.label(class="form-label") }}
+    {{ form.descripcion(class="form-control" + (' is-invalid' if form.descripcion.errors else ''), rows=5, placeholder="Enter ticket description") }}
+    {% for error in form.descripcion.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}
+  </div>
+
+  <!-- Ticket Prioridad -->
+  <div class="mb-3">
+    {{ form.prioridad.label(class="form-label") }}
+    {{ form.prioridad(class="form-select" + (' is-invalid' if form.prioridad.errors else '')) }}
+    {% for error in form.prioridad.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}
+  </div>
+
+  <!-- Ticket Técnico Asignado -->
+  <div class="mb-3">
+    {{ form.tecnico_id.label(class="form-label") }}
+    {{ form.tecnico_id(class="form-select" + (' is-invalid' if form.tecnico_id.errors else '')) }}
+    {% for error in form.tecnico_id.errors %}
+      <div class="invalid-feedback">{{ error }}</div>
+    {% endfor %}
+  </div>
+
+  <!-- Submit Button -->
+  <div class="mb-3">
+    <button type="submit" class="btn btn-primary">
+      {{ editar and "Update Ticket" or "Create Ticket" }}
+    </button>
+    <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary">Cancel</a>
+  </div>
+</form>
+{% endblock %}

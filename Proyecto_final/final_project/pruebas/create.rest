@@ -1,0 +1,10 @@
+POST http://localhost:5000/tickets
+Content-Type: application/json
+
+{
+  "asunto": "Problema con Flask Avanzado",
+  "descripcion": "No puedo acceder a los materiales del curso",
+  "prioridad": "Media",
+  "usuario_id": 1,
+  "tecnico_id": 2
+}
